@@ -12,6 +12,10 @@
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
+    // accept only touches on status bar
+    if (point.y < 20.) {
+        return [super hitTest:point withEvent:event];
+    }
     return nil;
 }
 
