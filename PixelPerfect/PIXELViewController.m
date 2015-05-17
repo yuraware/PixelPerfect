@@ -11,8 +11,10 @@
 #import "PIXELWindow.h"
 #import "UIImage+ColorInverse.h"
 #import <objc/runtime.h>
+#import "PIXELSettingsViewController.h"
 
 static NSInteger const kPIXELShowButtonTag = 1001;
+static NSInteger const kPIXELSettingsButtonTag = 1002;
 
 @interface PIXELViewController ()
 {
@@ -25,18 +27,29 @@ static NSInteger const kPIXELShowButtonTag = 1001;
 
 
 - (void)viewDidLoad
-{
+{    
     Class class = object_getClass(self);
-    SEL selector = @selector(showOrHideMockupImageView);
-    Method method = class_getInstanceMethod([PIXELViewController class], selector);
-    IMP imp = method_getImplementation(method);
-    const char *methodTypeEncoding = method_getTypeEncoding(method);
-
-    BOOL methodAdded = class_addMethod(class, selector, imp, methodTypeEncoding);
     
-    if (!methodAdded) {
-        NSLog(@"can't add method %@", NSStringFromSelector(selector));
+    SEL showMockupSelector = @selector(showOrHideMockupImageView);
+    Method showMockupMethod = class_getInstanceMethod([PIXELViewController class], showMockupSelector);
+    IMP showMockupImp = method_getImplementation(showMockupMethod);
+    const char *showMockupMethodTypeEncoding = method_getTypeEncoding(showMockupMethod);
+    BOOL showMockupMethodAdded = class_addMethod(class, showMockupSelector, showMockupImp, showMockupMethodTypeEncoding);
+    
+    if (!showMockupMethodAdded) {
+        NSLog(@"can't add method %@", NSStringFromSelector(showMockupSelector));
     }
+
+    SEL showSettingsSelector = @selector(settingsPressed:);
+    Method showSettingsMethod = class_getInstanceMethod([PIXELViewController class], showSettingsSelector);
+    IMP showSettingsImp = method_getImplementation(showSettingsMethod);
+    const char *showSettingsMethodTypeEncoding = method_getTypeEncoding(showSettingsMethod);
+    BOOL showSettingsMethodAdded = class_addMethod(class, showSettingsSelector, showSettingsImp, showSettingsMethodTypeEncoding);
+    
+    if (!showSettingsMethodAdded) {
+        NSLog(@"can't add method %@", NSStringFromSelector(showSettingsSelector));
+    }
+
     
     UIImage *image = [[PIXELPerfect shared] imageForControllerClass:[self class]];
     
@@ -54,7 +67,7 @@ static NSInteger const kPIXELShowButtonTag = 1001;
         [[PIXELPerfect shared].overlayWindow makeKeyWindow];
         [[PIXELPerfect shared].overlayWindow addSubview:_mockupImageView];
         
-        UIButton *showButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)/2. - 50.,
+        UIButton *showButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)/2. - 110.,
                                                                           0,
                                                                           100.0,
                                                                           20.)];
@@ -66,11 +79,21 @@ static NSInteger const kPIXELShowButtonTag = 1001;
         [showButton setTitle:@"Show" forState:UIControlStateNormal];
         [showButton addTarget:self action:@selector(showOrHideMockupImageView) forControlEvents:UIControlEventTouchUpInside];
         
-        [self.view addSubview:showButton];
         [[PIXELPerfect shared].overlayWindow addSubview:showButton];
         
-       // _showButton = showButton;
-
+        UIButton *settingsButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)/2. + 10.,
+                                                                              0,
+                                                                              100.0,
+                                                                              20.)];
+        settingsButton.tag = kPIXELSettingsButtonTag;
+        settingsButton.backgroundColor = [UIColor lightGrayColor];
+        settingsButton.layer.masksToBounds = YES;
+        settingsButton.layer.cornerRadius = 5.;
+        
+        [settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
+        [settingsButton addTarget:self action:@selector(settingsPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[PIXELPerfect shared].overlayWindow addSubview:settingsButton];
     }
 }
 
@@ -78,7 +101,13 @@ static NSInteger const kPIXELShowButtonTag = 1001;
 {
     if ([self isKindOfClass:[PIXELPerfect shared].recentUsedClass]) {
         [PIXELPerfect shared].overlayWindow.hidden = YES;
-        [[PIXELPerfect shared].overlayWindow removeSubviews];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([self isKindOfClass:[PIXELPerfect shared].recentUsedClass]) {
+        [PIXELPerfect shared].overlayWindow.hidden = NO;
     }
 }
 
@@ -103,6 +132,13 @@ static NSInteger const kPIXELShowButtonTag = 1001;
 
     UIButton *showButton = (UIButton *)[[PIXELPerfect shared].overlayWindow viewWithTag:kPIXELShowButtonTag];
     [showButton setTitle:title forState:UIControlStateNormal];
+}
+
+- (void)settingsPressed:(id)sender
+{
+    PIXELSettingsViewController *settingsViewController = [[PIXELSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *navigationViewController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    [self presentViewController:navigationViewController animated:YES completion:nil];
 }
 
 @end

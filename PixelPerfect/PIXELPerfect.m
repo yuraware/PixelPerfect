@@ -16,6 +16,7 @@ static PIXELPerfect *_sharedInstance = nil;
 
 static IMP viewDidLoadImplementation = NULL;
 static IMP viewWillDisappearImplementation = NULL;
+static IMP viewDidAppearImplementation = NULL;
 
 @interface PIXELPerfect ()
 
@@ -53,18 +54,24 @@ static IMP viewWillDisappearImplementation = NULL;
        
         SEL viewDidLoadSelector = @selector(viewDidLoad);
         SEL viewWillDisappearSelector = @selector(viewWillDisappear:);
+        SEL viewDidAppear = @selector(viewDidAppear:);
         
         viewDidLoadImplementation = class_getMethodImplementation([UIViewController class], viewDidLoadSelector);
         viewWillDisappearImplementation = class_getMethodImplementation([UIViewController class], viewWillDisappearSelector);
+        viewDidAppearImplementation = class_getMethodImplementation([UIViewController class], viewWillDisappearSelector);
         
         Method originalViewDidLoadMethod = class_getInstanceMethod([UIViewController class], viewDidLoadSelector);
         Method swizzledViewDidLoadMethod = class_getInstanceMethod([PIXELViewController class], viewDidLoadSelector);
 
         Method originalViewWillDisappearMethod = class_getInstanceMethod([UIViewController class], viewWillDisappearSelector);
         Method swizzledViewWillDisappearMethod = class_getInstanceMethod([PIXELViewController class], viewWillDisappearSelector);
-     
+
+        Method originalViewDidAppearMethod = class_getInstanceMethod([UIViewController class], viewDidAppear);
+        Method swizzledViewDidAppearMethod = class_getInstanceMethod([PIXELViewController class], viewDidAppear);
+        
         method_exchangeImplementations(originalViewDidLoadMethod, swizzledViewDidLoadMethod);
         method_exchangeImplementations(originalViewWillDisappearMethod, swizzledViewWillDisappearMethod);
+        method_exchangeImplementations(originalViewDidAppearMethod, swizzledViewDidAppearMethod);
     });
 }
 
@@ -76,6 +83,11 @@ static IMP viewWillDisappearImplementation = NULL;
 - (void)viewWillDisappear:(BOOL)animated
 {
     viewWillDisappearImplementation();
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    viewDidAppearImplementation();
 }
 
 - (void)setControllersClassesAndImages:(NSDictionary *)classesImagesDict

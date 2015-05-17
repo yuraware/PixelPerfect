@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  PixelPerfect
 //
-//  Created by Youri on 5/14/15.
+//  Created by Yuri on 5/14/15.
 //  Copyright (c) 2015 Yuri Kobets. All rights reserved.
 //
 

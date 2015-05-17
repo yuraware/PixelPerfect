@@ -32,6 +32,7 @@
 		81355AB11B04C50A007C9830 /* facebook-btn-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 81355A951B04C50A007C9830 /* facebook-btn-selected.png */; };
 		81355AB21B04C50A007C9830 /* facebook-btn-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81355A961B04C50A007C9830 /* facebook-btn-selected@2x.png */; };
 		81355AB31B04C50A007C9830 /* facebook-btn-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81355A971B04C50A007C9830 /* facebook-btn-selected@3x.png */; };
+		8190EA9D1B08913C0059465E /* PIXELSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8190EA9C1B08913C0059465E /* PIXELSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		81355A951B04C50A007C9830 /* facebook-btn-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-btn-selected.png"; sourceTree = "<group>"; };
 		81355A961B04C50A007C9830 /* facebook-btn-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-btn-selected@2x.png"; sourceTree = "<group>"; };
 		81355A971B04C50A007C9830 /* facebook-btn-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-btn-selected@3x.png"; sourceTree = "<group>"; };
+		8190EA9B1B08913C0059465E /* PIXELSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIXELSettingsViewController.h; sourceTree = "<group>"; };
+		8190EA9C1B08913C0059465E /* PIXELSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIXELSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				81355A781B04C50A007C9830 /* PIXELWindow.m */,
 				81355A791B04C50A007C9830 /* UIImage+ColorInverse.h */,
 				81355A7A1B04C50A007C9830 /* UIImage+ColorInverse.m */,
+				8190EA9B1B08913C0059465E /* PIXELSettingsViewController.h */,
+				8190EA9C1B08913C0059465E /* PIXELSettingsViewController.m */,
 			);
 			path = PixelPerfect;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 			files = (
 				81355A9E1B04C50A007C9830 /* UIImage+ColorInverse.m in Sources */,
 				81355A9B1B04C50A007C9830 /* PIXELPerfect.m in Sources */,
+				8190EA9D1B08913C0059465E /* PIXELSettingsViewController.m in Sources */,
 				81355A9D1B04C50A007C9830 /* PIXELWindow.m in Sources */,
 				81355AA21B04C50A007C9830 /* ExampleViewController.m in Sources */,
 				81355A9C1B04C50A007C9830 /* PIXELViewController.m in Sources */,
