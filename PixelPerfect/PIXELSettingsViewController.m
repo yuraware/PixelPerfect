@@ -7,6 +7,7 @@
 //
 
 #import "PIXELSettingsViewController.h"
+#import "PIXELPerfect.h"
 
 @interface PIXELSettingsViewController ()
 
@@ -54,6 +55,10 @@
         rect.origin.x = CGRectGetWidth(self.view.frame) - CGRectGetWidth(rect) - 10.;
         invertSwitch.frame = rect;
         
+        invertSwitch.on = [PIXELPerfect shared].isImageInverted;
+        
+        [invertSwitch addTarget:self action:@selector(didChangeInvertedSwitch:) forControlEvents:UIControlEventValueChanged];
+        
         [cell.contentView addSubview:invertSwitch];
     
     } else if (indexPath.section == 1) { // alpha cell
@@ -64,6 +69,13 @@
     }
     
     return cell;
+}
+
+#pragma mark - 
+
+- (void)didChangeInvertedSwitch:(UISwitch *)sender
+{
+    [[PIXELPerfect shared] setImageInverted:sender.on];
 }
 
 @end

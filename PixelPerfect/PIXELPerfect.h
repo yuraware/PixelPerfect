@@ -17,6 +17,8 @@
 
 @property (nonatomic,strong) Class recentUsedClass;
 
+@property (nonatomic,assign, getter=isImageInverted) BOOL imageInverted;
+
 + (PIXELPerfect *)shared;
 
 /**

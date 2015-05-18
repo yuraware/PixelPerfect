@@ -14,6 +14,8 @@
 
 static PIXELPerfect *_sharedInstance = nil;
 
+static NSString * const kPIXELImageInvertedImageKey = @"kPIXELImageInvertedImageKey";
+
 static IMP viewDidLoadImplementation = NULL;
 static IMP viewWillDisappearImplementation = NULL;
 static IMP viewDidAppearImplementation = NULL;
@@ -45,6 +47,17 @@ static IMP viewDidAppearImplementation = NULL;
     }
     
     return self;
+}
+
+- (void)setImageInverted:(BOOL)imageInverted
+{
+    [[NSUserDefaults standardUserDefaults] setBool:imageInverted forKey:kPIXELImageInvertedImageKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)isImageInverted
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kPIXELImageInvertedImageKey];
 }
 
 - (void)swizzleUIViewControllerMethods

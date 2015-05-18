@@ -60,7 +60,7 @@ static NSInteger const kPIXELSettingsButtonTag = 1002;
         [PIXELPerfect shared].overlayWindow.hidden = NO;
         
         _mockupImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        _mockupImageView.image = image.inverseColors;
+        _mockupImageView.image = [PIXELPerfect shared].isImageInverted ? image.inverseColors : image;
         _mockupImageView.alpha = 0.5;
         _mockupImageView.hidden = YES;
         
