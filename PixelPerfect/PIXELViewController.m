@@ -15,6 +15,7 @@
 
 static NSInteger const kPIXELShowButtonTag = 1001;
 static NSInteger const kPIXELSettingsButtonTag = 1002;
+static NSInteger const kPIXELMockupImageViewTag = 1003;
 
 @interface PIXELViewController ()
 {
@@ -60,6 +61,7 @@ static NSInteger const kPIXELSettingsButtonTag = 1002;
         [PIXELPerfect shared].overlayWindow.hidden = NO;
         
         _mockupImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _mockupImageView.tag = kPIXELMockupImageViewTag;
         _mockupImageView.image = [PIXELPerfect shared].isImageInverted ? image.inverseColors : image;
         _mockupImageView.alpha = 0.5;
         _mockupImageView.hidden = YES;
@@ -104,10 +106,19 @@ static NSInteger const kPIXELSettingsButtonTag = 1002;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     if ([self isKindOfClass:[PIXELPerfect shared].recentUsedClass]) {
         [PIXELPerfect shared].overlayWindow.hidden = NO;
+    }
+    
+    UIImage *image = [[PIXELPerfect shared] imageForControllerClass:[self class]];
+    
+    if (image) {
+        UIImageView *mockupImageView = (UIImageView *)[[PIXELPerfect shared].overlayWindow viewWithTag:kPIXELMockupImageViewTag];
+        mockupImageView.image  = [PIXELPerfect shared].isImageInverted ? image.inverseColors : image;
+        
+        mockupImageView.alpha = [PIXELPerfect shared].imageAlpha;
     }
 }
 

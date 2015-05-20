@@ -65,6 +65,10 @@
         
         cell.textLabel.text = @"Alpha";
         UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(80., 10., CGRectGetWidth(self.view.bounds) - 90., 20.)];
+        
+        [slider addTarget:self action:@selector(didChangeSliderImageAlpha:) forControlEvents:UIControlEventValueChanged];
+        
+        slider.value = [PIXELPerfect shared].imageAlpha;
         [cell.contentView addSubview:slider];
     }
     
@@ -76,6 +80,11 @@
 - (void)didChangeInvertedSwitch:(UISwitch *)sender
 {
     [[PIXELPerfect shared] setImageInverted:sender.on];
+}
+
+- (void)didChangeSliderImageAlpha:(UISlider *)sender
+{
+    [[PIXELPerfect shared] setImageAlpha:sender.value];
 }
 
 @end

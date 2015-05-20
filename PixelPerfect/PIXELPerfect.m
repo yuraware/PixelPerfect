@@ -15,10 +15,13 @@
 static PIXELPerfect *_sharedInstance = nil;
 
 static NSString * const kPIXELImageInvertedImageKey = @"kPIXELImageInvertedImageKey";
+static NSString * const kPIXELImageAlphaKey = @"kPIXELImageAlphaKey";
+static float const kPIXELDefaultImageAlpha = 0.5;
 
 static IMP viewDidLoadImplementation = NULL;
 static IMP viewWillDisappearImplementation = NULL;
 static IMP viewDidAppearImplementation = NULL;
+static IMP viewWillAppearImplementation = NULL;
 
 @interface PIXELPerfect ()
 
@@ -60,6 +63,21 @@ static IMP viewDidAppearImplementation = NULL;
     return [[NSUserDefaults standardUserDefaults] boolForKey:kPIXELImageInvertedImageKey];
 }
 
+- (void)setImageAlpha:(float)imageAlpha
+{
+    [[NSUserDefaults standardUserDefaults] setFloat:imageAlpha forKey:kPIXELImageAlphaKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (float)imageAlpha
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kPIXELImageAlphaKey] == nil) {
+        return kPIXELDefaultImageAlpha;
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] floatForKey:kPIXELImageAlphaKey];
+}
+
 - (void)swizzleUIViewControllerMethods
 {
     static dispatch_once_t onceToken;
@@ -67,11 +85,13 @@ static IMP viewDidAppearImplementation = NULL;
        
         SEL viewDidLoadSelector = @selector(viewDidLoad);
         SEL viewWillDisappearSelector = @selector(viewWillDisappear:);
-        SEL viewDidAppear = @selector(viewDidAppear:);
+        SEL viewDidAppearSelector = @selector(viewDidAppear:);
+        SEL viewWillAppearSelector = @selector(viewWillAppear:);
         
         viewDidLoadImplementation = class_getMethodImplementation([UIViewController class], viewDidLoadSelector);
         viewWillDisappearImplementation = class_getMethodImplementation([UIViewController class], viewWillDisappearSelector);
-        viewDidAppearImplementation = class_getMethodImplementation([UIViewController class], viewWillDisappearSelector);
+        viewDidAppearImplementation = class_getMethodImplementation([UIViewController class], viewDidAppearSelector);
+        viewWillAppearImplementation = class_getMethodImplementation([UIViewController class], viewWillAppearSelector);
         
         Method originalViewDidLoadMethod = class_getInstanceMethod([UIViewController class], viewDidLoadSelector);
         Method swizzledViewDidLoadMethod = class_getInstanceMethod([PIXELViewController class], viewDidLoadSelector);
@@ -79,12 +99,16 @@ static IMP viewDidAppearImplementation = NULL;
         Method originalViewWillDisappearMethod = class_getInstanceMethod([UIViewController class], viewWillDisappearSelector);
         Method swizzledViewWillDisappearMethod = class_getInstanceMethod([PIXELViewController class], viewWillDisappearSelector);
 
-        Method originalViewDidAppearMethod = class_getInstanceMethod([UIViewController class], viewDidAppear);
-        Method swizzledViewDidAppearMethod = class_getInstanceMethod([PIXELViewController class], viewDidAppear);
+        Method originalViewDidAppearMethod = class_getInstanceMethod([UIViewController class], viewDidAppearSelector);
+        Method swizzledViewDidAppearMethod = class_getInstanceMethod([PIXELViewController class], viewDidAppearSelector);
+
+        Method originalViewWillAppearMethod = class_getInstanceMethod([UIViewController class], viewWillAppearSelector);
+        Method swizzledViewWillAppearMethod = class_getInstanceMethod([PIXELViewController class], viewWillAppearSelector);
         
         method_exchangeImplementations(originalViewDidLoadMethod, swizzledViewDidLoadMethod);
         method_exchangeImplementations(originalViewWillDisappearMethod, swizzledViewWillDisappearMethod);
         method_exchangeImplementations(originalViewDidAppearMethod, swizzledViewDidAppearMethod);
+        method_exchangeImplementations(originalViewWillAppearMethod, swizzledViewWillAppearMethod);
     });
 }
 
@@ -101,6 +125,11 @@ static IMP viewDidAppearImplementation = NULL;
 - (void)viewDidAppear:(BOOL)animated
 {
     viewDidAppearImplementation();
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    viewWillAppearImplementation();
 }
 
 - (void)setControllersClassesAndImages:(NSDictionary *)classesImagesDict
