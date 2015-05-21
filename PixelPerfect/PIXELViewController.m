@@ -35,22 +35,13 @@ static NSInteger const kPIXELMockupImageViewTag = 1003;
     Method showMockupMethod = class_getInstanceMethod([PIXELViewController class], showMockupSelector);
     IMP showMockupImp = method_getImplementation(showMockupMethod);
     const char *showMockupMethodTypeEncoding = method_getTypeEncoding(showMockupMethod);
-    BOOL showMockupMethodAdded = class_addMethod(class, showMockupSelector, showMockupImp, showMockupMethodTypeEncoding);
-    
-    if (!showMockupMethodAdded) {
-        NSLog(@"can't add method %@", NSStringFromSelector(showMockupSelector));
-    }
+    class_addMethod(class, showMockupSelector, showMockupImp, showMockupMethodTypeEncoding);
 
     SEL showSettingsSelector = @selector(settingsPressed:);
     Method showSettingsMethod = class_getInstanceMethod([PIXELViewController class], showSettingsSelector);
     IMP showSettingsImp = method_getImplementation(showSettingsMethod);
     const char *showSettingsMethodTypeEncoding = method_getTypeEncoding(showSettingsMethod);
-    BOOL showSettingsMethodAdded = class_addMethod(class, showSettingsSelector, showSettingsImp, showSettingsMethodTypeEncoding);
-    
-    if (!showSettingsMethodAdded) {
-        NSLog(@"can't add method %@", NSStringFromSelector(showSettingsSelector));
-    }
-
+    class_addMethod(class, showSettingsSelector, showSettingsImp, showSettingsMethodTypeEncoding);
     
     UIImage *image = [[PIXELPerfect shared] imageForControllerClass:[self class]];
     
