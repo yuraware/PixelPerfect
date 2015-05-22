@@ -55,7 +55,7 @@ static NSInteger const kPIXELMockupImageViewTag = 1003;
         _mockupImageView.tag = kPIXELMockupImageViewTag;
         _mockupImageView.image = [PIXELPerfect shared].isImageInverted ? image.inverseColors : image;
         _mockupImageView.alpha = 0.5;
-        _mockupImageView.hidden = YES;
+        _mockupImageView.hidden = ![PIXELPerfect shared].isShowingOnStart;
         
         [[PIXELPerfect shared].overlayWindow makeKeyWindow];
         [[PIXELPerfect shared].overlayWindow addSubview:_mockupImageView];
@@ -69,7 +69,9 @@ static NSInteger const kPIXELMockupImageViewTag = 1003;
         showButton.layer.masksToBounds = YES;
         showButton.layer.cornerRadius = 5.;
         
-        [showButton setTitle:@"Show" forState:UIControlStateNormal];
+        NSString *title = _mockupImageView.isHidden ? @"show" : @"hide";
+        
+        [showButton setTitle:title forState:UIControlStateNormal];
         [showButton addTarget:self action:@selector(showOrHideMockupImageView) forControlEvents:UIControlEventTouchUpInside];
         
         [[PIXELPerfect shared].overlayWindow addSubview:showButton];

@@ -16,6 +16,8 @@ static PIXELPerfect *_sharedInstance = nil;
 
 static NSString * const kPIXELImageInvertedImageKey = @"kPIXELImageInvertedImageKey";
 static NSString * const kPIXELImageAlphaKey = @"kPIXELImageAlphaKey";
+static NSString * const kPIXELShowOnStartKey = @"kPIXELShowOnStartKey";
+
 static float const kPIXELDefaultImageAlpha = 0.5;
 
 static IMP viewDidLoadImplementation = NULL;
@@ -76,6 +78,17 @@ static IMP viewWillAppearImplementation = NULL;
     }
     
     return [[NSUserDefaults standardUserDefaults] floatForKey:kPIXELImageAlphaKey];
+}
+
+- (void)setShowOnStart:(BOOL)showOnStart
+{
+    [[NSUserDefaults standardUserDefaults] setBool:showOnStart forKey:kPIXELShowOnStartKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)isShowingOnStart
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kPIXELShowOnStartKey];
 }
 
 - (void)swizzleUIViewControllerMethods

@@ -33,7 +33,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -70,6 +70,22 @@
         
         slider.value = [PIXELPerfect shared].imageAlpha;
         [cell.contentView addSubview:slider];
+        
+    } else if (indexPath.section == 2) { // show on start
+        
+        cell.textLabel.text = @"Show mockup image on start";
+        
+        UISwitch *showSwitch = [[UISwitch alloc] init];
+        showSwitch.center = cell.contentView.center;
+        CGRect rect = showSwitch.frame;
+        rect.origin.x = CGRectGetWidth(self.view.frame) - CGRectGetWidth(rect) - 10.;
+        showSwitch.frame = rect;
+        
+        showSwitch.on = [PIXELPerfect shared].isShowingOnStart;
+        
+        [showSwitch addTarget:self action:@selector(didChangeShowOnStartSwitch:) forControlEvents:UIControlEventValueChanged];
+        
+        [cell.contentView addSubview:showSwitch];
     }
     
     return cell;
@@ -85,6 +101,11 @@
 - (void)didChangeSliderImageAlpha:(UISlider *)sender
 {
     [[PIXELPerfect shared] setImageAlpha:sender.value];
+}
+
+- (void)didChangeShowOnStartSwitch:(UISwitch *)sender
+{
+    [[PIXELPerfect shared] setShowOnStart:sender.on];
 }
 
 @end
