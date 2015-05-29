@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810BB50A1B1907EE0007746B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810BB5091B1907EE0007746B /* CoreImage.framework */; };
 		81355A6A1B04C459007C9830 /* PixelPerfectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81355A691B04C459007C9830 /* PixelPerfectTests.m */; };
 		81355A9B1B04C50A007C9830 /* PIXELPerfect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81355A741B04C50A007C9830 /* PIXELPerfect.m */; };
 		81355A9C1B04C50A007C9830 /* PIXELViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81355A761B04C50A007C9830 /* PIXELViewController.m */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		810BB5091B1907EE0007746B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		81355A4B1B04C458007C9830 /* PixelPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81355A631B04C458007C9830 /* PixelPerfectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelPerfectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81355A681B04C459007C9830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810BB50A1B1907EE0007746B /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		810BB50B1B1908020007746B /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				810BB5091B1907EE0007746B /* CoreImage.framework */,
+			);
+			name = frameworks;
+			sourceTree = "<group>";
+		};
 		8117763C1AF2A8E900D288A7 = {
 			isa = PBXGroup;
 			children = (
@@ -164,10 +175,10 @@
 				81355A7E1B04C50A007C9830 /* LaunchScreen.xib */,
 				81355A801B04C50A007C9830 /* Main.storyboard */,
 				81355A821B04C50A007C9830 /* classes */,
+				810BB50B1B1908020007746B /* frameworks */,
 				81355A881B04C50A007C9830 /* mockups */,
 				81355A8A1B04C50A007C9830 /* resources */,
 				81355AB51B04C518007C9830 /* Supporting Files */,
-				81355A9A1B04C50A007C9830 /* viewcontrollers */,
 			);
 			path = "PixelPerfect-Example";
 			sourceTree = "<group>";
@@ -208,13 +219,6 @@
 				81355A971B04C50A007C9830 /* facebook-btn-selected@3x.png */,
 			);
 			path = resources;
-			sourceTree = "<group>";
-		};
-		81355A9A1B04C50A007C9830 /* viewcontrollers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewcontrollers;
 			sourceTree = "<group>";
 		};
 		81355AB51B04C518007C9830 /* Supporting Files */ = {

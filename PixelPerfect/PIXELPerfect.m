@@ -165,7 +165,6 @@ static IMP viewWillAppearImplementation = NULL;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
         _overlayWindow.hidden = NO;
         _overlayWindow.backgroundColor = [UIColor clearColor];
-
     }
     
     return _overlayWindow;
