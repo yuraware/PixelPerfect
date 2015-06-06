@@ -8,6 +8,8 @@ Compare mockup design with a user interface on iOS
 * change the mockup image transparency
 * invert colors
 
+![](https://github.com/ykobets/PixelPerfect/blob/master/example.gif)
+
 ##Usage
 
 Create dictionary with class name and corresponding mockup image name. In the status bar appears buttons "show/hide" and "settings". Now you can compare mockup image with actual user interface.
