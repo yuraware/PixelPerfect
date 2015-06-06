@@ -1,6 +1,7 @@
 # PixelPerfect
 Compare mockup design with a user interface on iOS
 
+[![Supported Plateforms](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://github.com/ykobets/PixelPerfect) 
 
 ##Features
 * show mockup image to compare with a user interface
@@ -9,9 +10,21 @@ Compare mockup design with a user interface on iOS
 
 ##Usage
 
-Create dictionary with class name and corresponding mockup image name.
+Create dictionary with class name and corresponding mockup image name. In the status bar appears buttons "show/hide" and settings. Now you can compare mockup image with actual user interface.
 
 ```
+#ifdef DEBUG
     NSDictionary *classesImagesDictionary = @{ NSStringFromClass([ExampleViewController class]) : @"add-point.png" };
     [[PIXELPerfect shared] setControllersClassesAndImages:classesImagesDictionary];
+#endif
+```
+
+##Install
+
+Install with [CocoaPods](http://cocoapods.org/). Add next lines to `Podfile`
+
+```
+platform :ios, '7.0'
+
+pod 'PixelPerfect', git: 'https://github.com/ykobets/PixelPerfect'
 ```

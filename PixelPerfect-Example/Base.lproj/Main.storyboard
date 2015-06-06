@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fO9-EF-6In">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fO9-EF-6In">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Example View Controller-->
@@ -70,10 +70,26 @@
                             </tableViewSection>
                             <tableViewSection id="7Du-vW-wKq">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="46" id="Vjc-15-U6s">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="Vjc-15-U6s">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vjc-15-U6s" id="fcn-80-RoA">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdu-EM-v71">
+                                                    <rect key="frame" x="18" y="20" width="284" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="xFw-aI-oal"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="facebook-btn-normal.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fdu-EM-v71" firstAttribute="leading" secondItem="fcn-80-RoA" secondAttribute="leading" constant="18" id="8Yf-Bq-Pay"/>
+                                                <constraint firstAttribute="trailing" secondItem="fdu-EM-v71" secondAttribute="trailing" constant="18" id="OrA-BQ-xEa"/>
+                                                <constraint firstAttribute="bottom" secondItem="fdu-EM-v71" secondAttribute="bottom" constant="1.5" id="o4D-fo-ZF2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -110,4 +126,7 @@
             <point key="canvasLocation" x="428" y="446"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="facebook-btn-normal.png" width="284" height="38"/>
+    </resources>
 </document>
