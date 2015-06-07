@@ -1,6 +1,8 @@
 # PixelPerfect
 Compare mockup design with a user interface on iOS
 
+You can inspect an implemented user interface. Setup your mockup images with corresponding view controllers in AppDelegate. You can see the diff of images using inversion of design mockup.
+
 [![Supported Plateforms](https://img.shields.io/badge/platform-ios-brightgreen.svg)](https://github.com/ykobets/PixelPerfect) 
 
 ##Features
