@@ -20,10 +20,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-#ifdef DEBUG
+    
+// Use it only in DEBUG mode
+// #ifdef DEBUG
+//   'code'
+// #else
+   
+    
     NSDictionary *classesImagesDictionary = @{ NSStringFromClass([ExampleViewController class]) : @"add-point.png" };
     [[PIXELPerfect shared] setControllersClassesAndImages:classesImagesDictionary];
-#endif
+
     
     return YES;
 }
