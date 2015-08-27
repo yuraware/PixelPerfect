@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
     s.source   = { :git => 'https://github.com/ykobets/PixelPerfect' }
     s.source_files = 'PixelPerfect'
     s.requires_arc = true
-    s.framework    = 'CoreImage'
+    s.frameworks = ['CoreImage', 'UIKit']
 end
