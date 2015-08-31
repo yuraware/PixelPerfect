@@ -19,14 +19,31 @@ Compare mockup design images with a user interface on iOS, get the diff of image
 In the status bar there appears buttons "show/hide" and "settings".
 Now you can compare mockup image with actual user interface.
 
-AppDelegate.m 
+`AppDelegate.m`
 
-Objective-C
+`Objective-C`
+
 ```
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
 #ifdef DEBUG
     NSDictionary *classesImagesDictionary = @{ NSStringFromClass([ExampleViewController class]) : @"viewcontroller-mockup.png" };
     [[PIXELPerfect shared] setControllersClassesAndImages:classesImagesDictionary];
-#endif
+#endif    
+    
+    return YES;
+}
+```
+
+`Swift`
+```
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    let classesImagesDictionary = [NSStringFromClass(ViewController.self) : "pixelperfect-screen1.png"]
+    PIXELPerfect.shared().setControllersClassesAndImages(classesImagesDictionary)
+    
+    return true
+}
 ```
 
 ##Install
