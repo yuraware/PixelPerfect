@@ -55,3 +55,12 @@ platform :ios, '7.0'
 
 pod 'PixelPerfect'
 ```
+
+In case of using Swift project
+
+```
+platform :ios, '7.0'
+use_frameworks!
+
+pod 'PixelPerfect'
+```
