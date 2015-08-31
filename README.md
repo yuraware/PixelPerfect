@@ -39,7 +39,7 @@ Now you can compare mockup image with actual user interface.
 ```
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
-    let classesImagesDictionary = [NSStringFromClass(ViewController.self) : "pixelperfect-screen1.png"]
+    let classesImagesDictionary = [NSStringFromClass(ViewController.self) : "viewcontroller-mockup.png"]
     PIXELPerfect.shared().setControllersClassesAndImages(classesImagesDictionary)
     
     return true
