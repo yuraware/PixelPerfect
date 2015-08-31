@@ -11,4 +11,5 @@ Pod::Spec.new do |s|
     s.source_files = 'PixelPerfect'
     s.requires_arc = true
     s.frameworks = ['CoreImage', 'UIKit']
+	s.public_header_files = 'PIXELPerfect+Public.h'
 end
