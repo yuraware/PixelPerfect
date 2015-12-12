@@ -4,9 +4,9 @@
 Compare mockup design images with a user interface on iOS, get the diff of images using inversion or transparency of design mockups.
 
 ##Features
-* show mockup image over a user interface
-* change the mockup image transparency
-* invert colors
+* show a mockup image imposed with a user interface
+* change a mockup image transparency
+* invert colors of a mockup image to see design difference
 
 ![](https://github.com/ykobets/PixelPerfect/blob/master/example.gif)
 
